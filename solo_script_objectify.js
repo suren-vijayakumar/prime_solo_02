@@ -6,10 +6,16 @@
  //3.  newArray[3] = baseSalary * bonus to newArray[3] = Math.round(baseSalary * bonus);
  //4. newText = document.createTextNode(array[i]) to newText = document.createTextNode(array[i].join(" , ")
 
-var arrayAtticus = ["Atticus", "2405", "47000", 3];
-var arrayJem = ["Jem", "62347", "63500", 4];
-var arrayBoo = ["Boo", "11435", "54000", 3];
-var arrayScout = ["Scout", "6243", "74750", 5];
+function emPloyee( name, employeeNumber,basesalary,reviewScore) {
+  this.name = name;
+  this.employeeNumber = employeeNumber;
+  this.baseSalary = basesalary; 
+  this.reviewScore =reviewScore;
+}
+var arrayAtticus =  new emPloyee ("Atticus", "2405", "47000", 3);
+var arrayJem =  new emPloyee("Jem", "62347","63500", 4);
+var arrayBoo = new emPloyee ("Boo", "11435", "54000", 3);
+var arrayScout = new emPloyee ("Scout", "6243", "74750", 5);
 
 var array = [arrayAtticus, arrayJem, arrayBoo, arrayScout];
 
@@ -31,11 +37,11 @@ for(var i = 0; i < array.length; i++){
 function calculateSTI(array){
   var newArray = [];
 
-  newArray[0] = array[0];
+  newArray[0] = array.name;
 
-  var employeeNumber = array[1];
-  var baseSalary = array[2];
-  var reviewScore = array[3];
+  var employeeNumber = array.employeeNumber;
+  var baseSalary = array.baseSalary;
+  var reviewScore = array.reviewScore;
 
   var bonus = getBaseSTI(reviewScore) + getYearAdjustment(employeeNumber) - getIncomeAdjustment(baseSalary);
   if(bonus > 0.13){
@@ -44,7 +50,7 @@ function calculateSTI(array){
 
   newArray[1] = bonus;
   newArray[2] = Math.round(baseSalary * (1.0 + bonus));// ceiling here
-  newArray[3] = Math.round(baseSalary * bonus); // ceiling here 
+  newArray[3] = baseSalary * bonus; // ceiling here 
   console.log(newArray[0] + " " + newArray[1] + " " + newArray[2] + " " + newArray[3]);
   return newArray;
 }
